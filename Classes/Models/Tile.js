@@ -132,6 +132,7 @@ var Tile = cc.Sprite.extend({
 
   //function use for turn left
   turnLeft: function() {
+
     this.distance = this.getPosition().y + TILE.SIZE / 2;
     this.runAction(cc.Sequence.create(
       cc.RotateTo.create(0.1, 90)
@@ -147,6 +148,15 @@ var Tile = cc.Sprite.extend({
       cc.RotateTo.create(0.1, -90)
     ));
 
+  },
+
+  scale: function() {
+  },
+
+  show: function() {
+  },
+
+  hide: function() {
   },
 
   //function use for generate trophies

@@ -1,4 +1,10 @@
 
+/**
+ * TileInformation
+ * Change TrackLayer to cc.Layer
+ * Add tile, trophies and property to TrackLayer
+ * Unify their operations
+ */
 var TrackLayer = {
 
   trackElements: [],
@@ -6,7 +12,6 @@ var TrackLayer = {
   register: function(elem) {
 
     this.trackElements.push(elem);
-    
 
   },
 
