@@ -1,0 +1,1 @@
+//Doublevar Double = {		name: PROPERTY.TYPE.DOUBLE,	src: P_DOUBLE,	bgSrc: P_DOUBLE_BG,	type: TYPE.TROPHY,	life: 5,		decorate: function(trophy) {		trophy.value *= 2;		trophy.src = P_DOUBLE_COIN;		return trophy;	},	uglify: function(trophy) {		trophy.value = 1;		trophy.src = P_COIN;				return trophy;	},	reset: function(trophy) {		this.life = 5;	},	};

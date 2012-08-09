@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>Naughty Squirrel</title>
+  <meta charset="utf-8" />
+  <meta name="author" content="html5china" />
+</head>
+
+<body>
+
+  <div id="gameLayer" style="width: 480px;height: 720px;margin: 0 auto;"></div>
+
+</body>
+
+<script type="text/javascript"> 
+  
+  var SCALE_RATE = 1;
+  var STANDARD_SIZE = {
+      width  : 480,
+      height : 720,
+  };
+
+  var WIN_SIZE = {
+
+    width  : STANDARD_SIZE.width * SCALE_RATE,
+    height : STANDARD_SIZE.height * SCALE_RATE,
+  
+  }
+
+  var div = document.getElementById('gameLayer');
+  
+  var canvas = document.createElement('canvas');
+  canvas.width = WIN_SIZE.width;
+  canvas.height = WIN_SIZE.height;
+  canvas.id = "gameCanvas";
+  canvas.style.border = "#333300 1px solid";
+  div.appendChild(canvas);
+
+</script>
+
+<script src="cocos2d.js"></script>
+
+</html>
