@@ -11,7 +11,7 @@ var About = cc.Layer.extend({
     }
 
     return true;
-
+    
   },
 
   loadBg: function() {

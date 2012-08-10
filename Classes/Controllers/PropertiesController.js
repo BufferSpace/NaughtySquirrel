@@ -20,8 +20,8 @@ var PropertiesController = {
     var occupiedRoute = trophies.getCurrentRoute();
     var type = this.generateType();
     var property = Property.create(this.availableRoute(occupiedRoute), type);
+    
     return property;
-
 
   },
 

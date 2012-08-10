@@ -56,7 +56,7 @@ var LOCATION = {
 
     NOTFIRST: {
       X: WIN_SIZE.width / 2,
-      Y: WIN_SIZE.height * 2,
+      Y: WIN_SIZE.height + TILE.SIZE / 2,
     },
 
   },
@@ -64,8 +64,8 @@ var LOCATION = {
   TROPHIES: {
 
     INIT: {
-      X: 0,
-      Y: WIN_SIZE.height,
+      X: -WIN_SIZE.width / 2,
+      Y: 0,
     },
 
     MOVETO: {

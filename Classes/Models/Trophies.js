@@ -8,7 +8,6 @@ var Trophies = cc.Layer.extend({
   trophies: null, 
   goStraightAction: null,  
 
-  //ctor function
   ctor: function(trophies, trophyType) {
 
     this._super();
@@ -16,8 +15,10 @@ var Trophies = cc.Layer.extend({
     this.trophies = trophies.pos;
 
     this.trophieSprites = [];
-    this.setAnchorPoint(cc.ccp(TROPHIES.ANCHORPOINT.X, TROPHIES.ANCHORPOINT.Y));
-    this.setPosition(cc.ccp(LOCATION.TROPHIES.INIT.X, LOCATION.TROPHIES.INIT.Y));
+
+    this.setContentSize(WIN_SIZE.width, TILE.SIZE);
+    this.setAnchorPoint(cc.ccp(0, 0));
+    this.setPosition(cc.ccp(-WIN_SIZE.width / 2, -TILE.SIZE / 2));
 
     for (var i = 0; i < this.trophies.length - 1; ++i) {
 
@@ -30,40 +31,13 @@ var Trophies = cc.Layer.extend({
 
   },
 
-  turnLeft: function() {
-
-    this.runAction(cc.Sequence.create(
-      cc.RotateTo.create(TROPHIES.ROTATE_TIME, TROPHIES.ROTATE_ANGLE)
-    ));
-
-  },
-
-  turnRight: function() {
-
-    this.runAction(cc.Sequence.create(
-      cc.RotateTo.create(TROPHIES.ROTATE_TIME, -TROPHIES.ROTATE_ANGLE)
-    ));
-
-  },
-
   getCurrentRoute: function() {
-
+  
     return this.route;
 
   },
 
-  goStraight: function() {
-
-    this.goStraightAction = this.runAction(
-      cc.MoveTo.create(
-        (TILE.SIZE + WIN_SIZE.height) / LevelController.velocity, 
-        cc.ccp(LOCATION.TROPHIES.MOVETO.X, LOCATION.TROPHIES.MOVETO.Y)
-      )
-    );
-
-  },
-
-  getTrophy: function(character) {
+  getTrophy: function(character, tile) {
 
     var characterY = character.getPosition().y + CHARACTER.SPRITE_HEIGHT / 2;
     var characterX = character.getCurrentRoute();
@@ -76,13 +50,12 @@ var Trophies = cc.Layer.extend({
 
       for (var i = 0; i < sprites.length; ++i) {
 
-        //Calculate the distance between tile and character
-        var trophyY = this.getPosition().y + sprites[i].getPosition().y;
-        var crtAndTpDistanceY = characterY - trophyY;
+        var trophyY = tile.getPosition().y - TILE.SIZE / 2 + sprites[i].getPosition().y;
 
-        var crtAndTpDistanceX = characterX - this.route;
+        var distanceY = characterY - trophyY;
+        var distanceX = characterX - this.route;
         
-        if (character.getTrophyBufferRect().isContain(crtAndTpDistanceX, crtAndTpDistanceY) &&
+        if (character.getTrophyBufferRect().isContain(distanceX, distanceY) &&
             character.isRunning() && 
             !sprites[i].isGot) {
 
@@ -98,29 +71,6 @@ var Trophies = cc.Layer.extend({
     }
 
     return 0;
-
-  },
-
-  deleteSprite: function(sprite) {
-
-    this.removeChild(sprite);
-
-  },
-
-  pause: function() {
-
-    this.stopAction(this.goStraightAction);
-
-  },
-
-  resume: function() {
-
-    this.distance = Math.abs(- TILE.SIZE - this.getPosition().y);
-    this.goStraightAction = cc.MoveTo.create(
-      this.distance / LevelController.velocity, 
-      cc.ccp(LOCATION.TROPHIES.MOVETO.X, LOCATION.TROPHIES.MOVETO.Y)
-    );
-    this.runAction(this.goStraightAction);
 
   },
 

@@ -122,7 +122,6 @@ cc.loadjs('Classes/Panels/ScoreItem.js');
 cc.loadjs('Classes/Panels/ScoreLayer.js');
 cc.loadjs('Classes/Panels/PauseLayer.js');
 cc.loadjs('Classes/Information/TrackInformation.js');
-cc.loadjs('Classes/Models/TrackLayer.js');
 cc.loadjs('Classes/Models/Track.js');
 
 

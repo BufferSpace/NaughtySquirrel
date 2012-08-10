@@ -234,12 +234,11 @@ var Character = cc.Layer.extend({
     if (this.isAboutToJump()) {
 
       this.changeStatus(CHARACTER.STATUS.JUMPING);
-      var distance = this.getPosition().y - currentTile.getPosition().y;
+      var distance = this.getPosition().y - (currentTile.getPosition().y - TILE.SIZE / 2);
       this.landingPosition = distance + this.jumpDistance;
 
-      //Deal with two simultaneous
-      if (this.landingPosition > TILE.SIZE / 2 - TILE.LOAD_BUFFER) 
-        this.landingPosition = this.landingPosition - ( TILE.SIZE - TILE.LOAD_BUFFER );
+      if (this.landingPosition > TILE.SIZE) 
+        this.landingPosition -= TILE.SIZE;
 
       //Enlarge
       this.characterSprite.runAction(cc.Sequence.create(
@@ -259,7 +258,7 @@ var Character = cc.Layer.extend({
 
     if (this.isJumping()) {
 
-      var jumpingPosition = this.getPosition().y - currentTile.getPosition().y;
+      var jumpingPosition = this.getPosition().y - (currentTile.getPosition().y - TILE.SIZE / 2);
       var landingRange = new Utils.Range(
         this.landingPosition - CHARACTER.LAND_BUFFER, 
         this.landingPosition + CHARACTER.LAND_BUFFER

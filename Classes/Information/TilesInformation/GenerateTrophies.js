@@ -14,7 +14,6 @@ var GenerateTrophies = {
       var index = Math.floor(Math.random() * (routes.length + 1));
       var route = 0;
 
-
       if (index != routes.length) {
 
         route = routes[index];
@@ -23,8 +22,6 @@ var GenerateTrophies = {
         }
 
       }
-
-
 
       return {
         route : route,

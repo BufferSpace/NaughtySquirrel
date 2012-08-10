@@ -150,7 +150,7 @@ var TROPHIES = {
 
   ANCHORPOINT: {
       X: 0.5, 
-      Y: 1,
+      Y: 0.5,
   },
 
   ROTATE_TIME: 0.1,

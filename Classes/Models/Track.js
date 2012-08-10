@@ -30,9 +30,6 @@ var Track = cc.Layer.extend({
   scoreLayer: null, 
   pauseLayer: null,
 
-  maxBuffer: TILE.LOAD_BUFFER,
-  currentPosition: null,
-
   ctor: function() {
 
     this._super();
@@ -64,13 +61,9 @@ var Track = cc.Layer.extend({
 
   loadFirstTile: function() {
 
-    this.currentTile = Tile.create(this.tiles[0], this.currentTileIndex, TILE.VELOCITY);
-    this.addChild(this.currentTile, Z_ORDER.TILE, this.currentTileIndex);
+    this.currentTile = Tile.create(this.tiles[0], this.currentTileIndex, TILE.VELOCITY, this);
 
-    this.currentPosition = this.currentTile.getPosition().y;
-
-    TrackLayer.register(this.currentTile);
-    TrackLayer.goStraight();
+    this.currentTile.goStraight();
 
   },
 
@@ -86,7 +79,7 @@ var Track = cc.Layer.extend({
      * loading. Then after the next tile is successfully registered to the trackLayer, the current
      * tile resumes to straight.
      */
-    TrackLayer.pause();
+    this.currentTile.pause();
 
     /**
      * Calculates the offset between the current tile and the window height. After the current tile
@@ -94,26 +87,14 @@ var Track = cc.Layer.extend({
      * tile right above the current tile. So the offset is calculated.
      */
     var offset = this.currentTile.getPosition().y + TILE.SIZE / 2 - WIN_SIZE.height;
-    this.nextTile = Tile.create(this.tiles[this.currentTileIndex], this.currentTileIndex, offset);
-    this.addChild(this.nextTile, Z_ORDER.TILE, this.currentTileIndex);
-
-    this.nextTrophies = Trophies.create(this.nextTile.generateTrophies(), this.trophyType);
-    this.addChild(this.nextTrophies, Z_ORDER.TROPHIES, TROPHY.TAG_OFFSET + this.currentTileIndex);
-
-    this.currentProperty = PropertiesController.generate(this.nextTrophies);
-    if(this.currentProperty) {
-      this.addChild(this.currentProperty, Z_ORDER.PROPERTY, PROPERTY.TAG_OFFSET + this.currentTileIndex);
-      TrackLayer.register(this.currentProperty);
-    }
-    
-    TrackLayer.register(this.nextTile);
-    TrackLayer.register(this.nextTrophies);
+    this.nextTile = Tile.create(this.tiles[this.currentTileIndex], this.currentTileIndex, offset, this);
 
     /**
      * Since the next tile begins to go straight after the registration, the current tile can resume
      * to move now.
      */
-    TrackLayer.resume();
+    this.nextTile.goStraight();
+    this.currentTile.resume();
 
     LevelController.updateVelocity();
     LevelController.generateTiles(TILE.LOAD_DURATION, this.currentTileIndex, this.tiles);
@@ -124,25 +105,9 @@ var Track = cc.Layer.extend({
 
   removePreviousTile: function() {
 
-
-    if (this.currentTileIndex > 3) {
-
-      TrackLayer.remove(this.currentTileIndex - 2);
-      TrackLayer.remove(TROPHY.TAG_OFFSET + this.currentTileIndex - 2);
-      TrackLayer.remove(PROPERTY.TAG_OFFSET + this.currentTileIndex - 2);
-
+    if (this.currentTileIndex >= 3)
       this.removeChildByTag(this.currentTileIndex - 2);
-      this.removeChildByTag(TROPHY.TAG_OFFSET + this.currentTileIndex - 2);
-
-    }
-
-    if (this.currentTileIndex == 3) {
-
-      TrackLayer.remove(this.currentTileIndex - 2);
-      this.removeChildByTag(this.currentTileIndex - 2);
-
-    }
-
+      
   },
 
   loadCharacter: function() {
@@ -191,45 +156,32 @@ var Track = cc.Layer.extend({
   },
 
   update: function() {
-
-    if (this.currentTile != null) { 
-
-      var offset = this.currentTile.getPosition().y - this.currentPosition;
-      this.currentPosition = this.currentTile.getPosition().y;
-
-      if (Math.abs(offset) > this.maxBuffer) {
-        this.maxBuffer = Math.abs(offset);
-      }
-
-    }
       
-    if (this.isTimeToChangeCurrentTrack())
-      this.changeCurrentTrack();
+    if (this.isTimeToChangeCurrentTile())
+      this.changeCurrentTile();
 
-    if (this.currentTile.isValidToRotate(this.turnDirection, this.character)) 
+    if (this.currentTile.isValidToRotate(this.turnDirection, this.character))
       this.turnAction();
 
     if (this.isGameOver() != null)
       this.gameOver(this.isGameOver());
       
-      
-    if (this.currentTile.isLoadNextTile(this.maxBuffer)) {
+    if (this.currentTile.isLoadNextTile()) {
 
       this.loadNextTile();	
       this.removePreviousTile();
 
     }
 
-    var isAboutToJump = this.character.jump(this.currentTile);    
-
+    var isAboutToJump = this.character.jump(this.currentTile);   
     var isLanded = this.character.landDetection(this.currentTile); 
+
+    this.scoreLayer.updateScores(this.currentTile.getTrophy(this.character));
     
-    var isGotProperty = this.characterGetProperty();
+    var isGotProperty = this.currentTile.getProperty(this.character);
     PropertiesController.updateActiveProperties(this.trophyType, this.character);
     
-    this.scoreLayer.updateScores(this.characterGetTrophy());
-
-    TrophiesActionsController.moveToCharacter(this.character);
+    TrophiesActionsController.moveToCharacter(this.character, this.currentTile);
     EnvironmentsController.evolve(this.character, {
 
       theme         : this.currentTheme,
@@ -241,7 +193,7 @@ var Track = cc.Layer.extend({
 
   },
 
-  isTimeToChangeCurrentTrack: function() {
+  isTimeToChangeCurrentTile: function() {
 
     if (this.nextTile != null && 
         this.nextTile.getPosition().y - TILE.SIZE / 2 < this.character.getPosition().y)
@@ -250,27 +202,23 @@ var Track = cc.Layer.extend({
 
   },
 
-  changeCurrentTrack: function() {
+  changeCurrentTile: function() {
 
     this.currentTile = this.nextTile;
-    this.currentPosition = this.currentTile.getPosition().y;
     this.nextTile = null;
-
-    this.currentTrophies = this.nextTrophies;
-    this.nextTrophies = null;
 
     this.currentTheme = THEMES.getThemeByTileIndex(this.tiles[this.currentTileIndex]);
 
-    TrophiesActionsController.changeCurrentTrophies(this.currentTrophies);
+    TrophiesActionsController.changeCurrentTrophies(this.currentTile.trophies);
 
   },
 
   turnAction: function() {
 
     if (this.turnDirection == ACTION.TURN_LEFT) 
-      TrackLayer.turnLeft();
+      this.currentTile.turnLeft();
     if (this.turnDirection == ACTION.TURN_RIGHT)
-      TrackLayer.turnRight();
+      this.currentTile.turnRight();
 
   },
 
@@ -295,40 +243,6 @@ var Track = cc.Layer.extend({
     scene.addChild(GameOver.create(this.scoreLayer, type));
     cc.Director.sharedDirector().replaceScene(scene);
                                                 
-  },
-
-  characterGetTrophy: function() {
-
-    if (this.currentTrophies != null) 
-      return this.currentTrophies.getTrophy(this.character);
-
-  },
-
-  characterGetProperty: function() {
-
-    if (this.currentProperty != null && this.currentProperty.isGot(this.character)) {
-
-      PropertiesController.add(this.currentProperty);
-
-      this.currentProperty.activate();
-
-      var self = this;
-      var property = this.currentProperty;
-
-      setTimeout((function(property) {
-        return function() {
-          self.removeChild(property);
-        };
-      })(property), 1000);
-
-      this.currentProperty = null;
-      
-      return true;
-
-    }
-
-    return false;
-
   },
 
   /*ccTouchesEnded: function(touches, event) {  

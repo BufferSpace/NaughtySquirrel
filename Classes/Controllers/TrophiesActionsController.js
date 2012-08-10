@@ -17,7 +17,7 @@ var TrophiesActionsController = {
 
   },
 
-  moveToCharacter: function(character) {
+  moveToCharacter: function(character, tile) {
 
     if (this.currentTrophies == null)
       return ;
@@ -25,7 +25,7 @@ var TrophiesActionsController = {
     var characterX = character.getPosition().x;
     var characterY = character.getPosition().y + CHARACTER.SPRITE_HEIGHT / 2;
 
-    var trophiesY = this.currentTrophies.getPosition().y;
+    var trophiesY = tile.getPosition().y - TILE.SIZE / 2;
     characterY -= trophiesY;
 
     for (var i = 0; i < this.sprites.length; ++i) {

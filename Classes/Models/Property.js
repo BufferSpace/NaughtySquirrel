@@ -26,43 +26,23 @@ var Property = cc.Layer.extend({
     this.propertyBgSprite.setIsVisible(false);
     this.addChild(this.propertyBgSprite);
 
-    this.setAnchorPoint(cc.ccp(PROPERTY.ANCHORPOINT.X, PROPERTY.ANCHORPOINT.Y));
+    this.setAnchorPoint(cc.ccp(0, 0));
     this.setPosition(this.generatePosition());
 
     this.distance = WIN_SIZE.height + TILE.SIZE;
 
   },
 
-  goStraight: function() {
-
-    this.goStraightAction = this.runAction(
-      cc.MoveTo.create(
-        this.distance / LevelController.velocity, 
-        cc.ccp(TRACK.LEFT_COORDINATE + this.route * ROUTE.WIDTH, - TILE.SIZE * 3 / 4)
-      )
-    );
-
-  },
-
-  turnLeft: function() {
-    
-    return true;
-  
-  },
-
-  turnRight: function() {
-
-    return true;
-
-  },
-
   generatePosition: function() {
 
-    return cc.ccp(TRACK.LEFT_COORDINATE + this.route * ROUTE.WIDTH, WIN_SIZE.height + TILE.SIZE / 4); 
+    return cc.ccp(
+      -WIN_SIZE.width / 2 + TRACK.LEFT_COORDINATE + this.route * ROUTE.WIDTH, 
+      -TILE.SIZE / 2 + TILE.SIZE / 4
+    ); 
 
   },
 
-  isGot: function(character) {
+  isGot: function(character, tile) {
 
     var characterX = character.getCurrentRoute();
     var characterY = character.getPosition().y;
@@ -70,7 +50,7 @@ var Property = cc.Layer.extend({
     if (characterX != this.route)
       return false;
 
-    var distance = this.getPosition().y - characterY; 
+    var distance = tile.getPosition().y + this.getPosition().y - characterY; 
     if (new Utils.Range(-TROPHY.GET_BUFFERY, TROPHY.GET_BUFFERY).isContain(distance) && 
         character.isRunning())
       return true;
@@ -80,7 +60,6 @@ var Property = cc.Layer.extend({
   activate: function() {
 
     this.propertySprite.setIsVisible(false);
-
     this.propertyBgSprite.setPosition(cc.ccp(0, 2 * CHARACTER.SPRITE_HEIGHT));
     this.propertyBgSprite.setIsVisible(true);
     this.propertyBgSprite.runAction(cc.ScaleTo.create(0.5, 3));
@@ -99,24 +78,6 @@ var Property = cc.Layer.extend({
     this.propertyInformation.life--;
 
   },
-
-  pause: function() {
-
-    this.stopAction(this.goStraightAction);
-
-  },
-
-  resume: function() {
-
-    this.distance = TILE.SIZE * 3 / 4 + this.getPosition().y;
-    this.goStraightAction = cc.MoveTo.create(
-      this.distance / LevelController.velocity, 
-      cc.ccp(TRACK.LEFT_COORDINATE + this.route * ROUTE.WIDTH, - TILE.SIZE * 3 / 4)
-    );
-    this.runAction(this.goStraightAction);
-
-  },
-
 
 });
 
