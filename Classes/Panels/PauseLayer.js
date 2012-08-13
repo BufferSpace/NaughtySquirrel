@@ -48,7 +48,6 @@ var PauseLayer = cc.Layer.extend({
     this.character.runAnimate();
     cc.Director.sharedDirector().resume();
     this.menu.setIsVisible(false);
-    TrackInformation.gameStatus = GAMESTATUS.PLAYING;
 
   },
 

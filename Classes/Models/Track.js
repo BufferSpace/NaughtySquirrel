@@ -19,12 +19,6 @@ var Track = cc.Layer.extend({
   currentTileIndex: null,
   currentTheme: THEMES.THEME_1.NAME,
 
-  /**
-   * Life cycle of a Trophies
-   * loadTrophy --->  nextTrophy  ---> currentTrophy(character in it) ---> removeTrophy
-   */
-  currentTrophies: null,
-  nextTrophies: null,
   trophyType: TrackInformation.basicTrophyType,
 
   scoreLayer: null, 
@@ -37,6 +31,7 @@ var Track = cc.Layer.extend({
     RESET();
 
     this.initTiles();				
+    this.initBackground();
     this.loadFirstTile();			
     this.loadCharacter();			
     this.loadScoreLayer();
@@ -59,10 +54,19 @@ var Track = cc.Layer.extend({
 
   },
 
+  initBackground: function() {
+
+    this.background1 = new Background([1]);
+    this.background2 = new Background([2]);
+
+    this.addChild(this.background2, Z_ORDER.BACKGROUND, 100000000001);
+    this.addChild(this.background1, Z_ORDER.BACKGROUND, 100000000000);
+  
+  },
+
   loadFirstTile: function() {
 
     this.currentTile = Tile.create(this.tiles[0], this.currentTileIndex, TILE.VELOCITY, this);
-
     this.currentTile.goStraight();
 
   },

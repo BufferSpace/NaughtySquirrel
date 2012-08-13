@@ -4,8 +4,6 @@
 
 var Tile = cc.Layer.extend({
 
-  type: null,							  
-  src: null,							  
   distance: null,						
   turnDirection: ACTION.GO_STRAIGHT,	
   tileInformation: null,	      			
@@ -40,12 +38,8 @@ var Tile = cc.Layer.extend({
       this.addChild(this.trophies, Z_ORDER.TROPHIES, TROPHY.TAG_OFFSET + index);
 
       this.property = PropertiesController.generate(this.trophies);
-      if (this.property) {
-
+      if (this.property)
         this.addChild(this.property, Z_ORDER.PROPERTY, PROPERTY.TAG_OFFSET + index);
-        console.log(this.property.getPosition());
-
-      }
        
 
     }

@@ -13,10 +13,8 @@ var THEMES = {
       isChanged = false;
 
     return {
-
       isChanged: isChanged,
       nextTheme: nextTheme,
-
     };
 
   },
@@ -30,17 +28,35 @@ var THEMES = {
 
   },
 
+  hasBackgrounds: function(theme) {
+
+    if (theme.NAME == 'TEST THEME')
+      return true;
+    return false;
+  
+  },
+
   THEME_1: {
 
     NAME: 'TRANQUIL FOREST',
-    TILE_OCCURENCE_RATES: [40, 30, 20, 10],
+    TILE_OCCURENCE_RATES: [100],
     TILE_OCCURENCE_RATES_SUM: 100,
     LEVEL_FUNCTION: new Utils.Ranges([5, 10, 15, 20, 25]),
+
+    /*
     TILE_POOL: [
       [1, 7],
       [4],
       [2, 3],
       [5, 6],
+    ],
+    */
+
+    TILE_POOL: [
+      [1],
+    ],
+    BACKGROUND_POOL: [
+      [1],
     ],
 
   },

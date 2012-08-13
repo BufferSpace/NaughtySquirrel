@@ -1,7 +1,7 @@
 var P_LOGO = 'Resources/title.png';
 var P_MENU = 'Resources/menu.png';
 
-var P_TILE_1 = 'Resources/tile_1.jpg';
+var P_TILE_1 = 'Resources/tile_12.png';
 var P_TILE_2 = 'Resources/tile_2.jpg';
 var P_TILE_3 = 'Resources/tile_3.jpg';
 var P_TILE_4 = 'Resources/tile_4.jpg';
@@ -12,6 +12,10 @@ var P_TILE_8 = 'Resources/tile_8.jpg';
 var P_TILE_9 = 'Resources/tile_9.jpg';
 var P_TILE_10 = 'Resources/tile_10.jpg';
 var P_TILE_11 = 'Resources/tile_11.jpg';
+var P_TILE_12 = 'Resources/tile_12.png';
+
+var P_BACKGROUND_1 = 'Resources/background_1.png';
+var P_BACKGROUND_2 = 'Resources/background_2.png';
 
 var P_CHARACTER1 = 'Resources/runner1.png';
 var P_CHARACTER2 = 'Resources/runner2.png';
@@ -88,6 +92,10 @@ var G_RESOURCES = [
   { type: 'image', src: P_TILE_9 },
   { type: 'image', src: P_TILE_10 },
   { type: 'image', src: P_TILE_11 },
+  { type: 'image', src: P_TILE_12 },
+
+  { type: 'image', src: P_BACKGROUND_1 },
+  { type: 'image', src: P_BACKGROUND_2 },
 
   { type: 'image', src: P_CHARACTER1 },
   { type: 'image', src: P_CHARACTER2 },

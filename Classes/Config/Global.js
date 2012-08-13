@@ -156,7 +156,14 @@ var TROPHIES = {
   ROTATE_TIME: 0.1,
   ROTATE_ANGLE: 90,
 
-}
+};
+
+var BACKGROUND = {
+
+  TAG: 15000,
+  VELOCITY: 100,
+
+};
 
 var BOUND = {
 
@@ -175,6 +182,7 @@ var TYPE = {
 
 var Z_ORDER = {
 
+  BACKGROUND: 0,
   TILE: 1,
   TROPHIES: 2,
   PROPERTY: 2,

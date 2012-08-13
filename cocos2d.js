@@ -29,7 +29,7 @@
 cc.Dir = '';//in relate to the html file or use absolute
 cc.loadQue = [];//the load que which js files are loaded
 cc.COCOS2D_DEBUG = 2;
-cc._DEBUG = 0;
+cc._DEBUG = 1;
 cc._IS_RETINA_DISPLAY_SUPPORTED = 0;
 //html5 selector method
 cc.$ = function (x) {
@@ -89,6 +89,9 @@ cc.loadjs('Classes/Information/TilesInformation/BasicTile.js');
 cc.loadjs('Classes/Information/TilesInformation/Tiles.js');
 cc.loadjs('Classes/Information/TilesInformation/TileInformation.js');
 
+cc.loadjs('Classes/Information/BackgroundInformation/Backgrounds.js');
+cc.loadjs('Classes/Information/BackgroundInformation/BackgroundInformation.js');
+
 cc.loadjs('Classes/Information/TrophiesInformation/Coin.js');
 cc.loadjs('Classes/Information/TrophiesInformation/TrophiesInformation.js');
 cc.loadjs('Classes/Controllers/TrophiesController.js');
@@ -107,8 +110,6 @@ cc.loadjs('Classes/Information/PropertiesInformation/Hp.js');
 cc.loadjs('Classes/Information/PropertiesInformation/PropertiesInformation.js');
 cc.loadjs('Classes/Controllers/PropertiesController.js');
 
-
-
 cc.loadjs('Classes/Scenes/MainMenu.js');
 cc.loadjs('Classes/Scenes/GameOver.js');
 cc.loadjs('Classes/Scenes/About.js');
@@ -118,9 +119,13 @@ cc.loadjs('Classes/Models/Trophy.js');
 cc.loadjs('Classes/Models/Trophies.js');
 cc.loadjs('Classes/Models/Property.js');
 cc.loadjs('Classes/Models/Character.js');
+cc.loadjs('Classes/Models/BackgroundTile.js');
+cc.loadjs('Classes/Models/Background.js');
+
 cc.loadjs('Classes/Panels/ScoreItem.js');
 cc.loadjs('Classes/Panels/ScoreLayer.js');
 cc.loadjs('Classes/Panels/PauseLayer.js');
+
 cc.loadjs('Classes/Information/TrackInformation.js');
 cc.loadjs('Classes/Models/Track.js');
 
