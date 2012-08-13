@@ -41,6 +41,9 @@ var TileInformation = function(type) {
     case 11:
       tileInformation = Tile11;
       break;
+    case 12:
+      tileInformation = Tile12;
+      break;
 
   }
 

@@ -31,7 +31,6 @@ var Track = cc.Layer.extend({
     RESET();
 
     this.initTiles();				
-    this.initBackground();
     this.loadFirstTile();			
     this.loadCharacter();			
     this.loadScoreLayer();
@@ -52,16 +51,6 @@ var Track = cc.Layer.extend({
     this.currentTileIndex = 1;
     LevelController.generateTiles(18, this.currentTileIndex, this.tiles);
 
-  },
-
-  initBackground: function() {
-
-    this.background1 = new Background([1]);
-    this.background2 = new Background([2]);
-
-    this.addChild(this.background2, Z_ORDER.BACKGROUND, 100000000001);
-    this.addChild(this.background1, Z_ORDER.BACKGROUND, 100000000000);
-  
   },
 
   loadFirstTile: function() {
@@ -100,10 +89,13 @@ var Track = cc.Layer.extend({
     this.nextTile.goStraight();
     this.currentTile.resume();
 
+    this.currentTheme = THEMES.getThemeByTileIndex(this.tiles[this.currentTileIndex]);
+
     LevelController.updateVelocity();
     LevelController.generateTiles(TILE.LOAD_DURATION, this.currentTileIndex, this.tiles);
 
     PropertiesController.updatePropertiesLife(this.trophyType, this.character);
+    BackgroundController.changeBackgrounds(this.currentTheme, this);
 
   },
 
@@ -210,8 +202,6 @@ var Track = cc.Layer.extend({
 
     this.currentTile = this.nextTile;
     this.nextTile = null;
-
-    this.currentTheme = THEMES.getThemeByTileIndex(this.tiles[this.currentTileIndex]);
 
     TrophiesActionsController.changeCurrentTrophies(this.currentTile.trophies);
 

@@ -6,7 +6,7 @@
  */
 var Background = cc.Layer.extend({
 
-  backgrounds: null,
+  backgroundTiles: null,
 
   currentBackgroundTile: null,
   nextBackgroundTile: null,
@@ -22,7 +22,7 @@ var Background = cc.Layer.extend({
 
     this._super();
 
-    this.backgrounds = backgrounds.copy();
+    this.backgroundTiles = backgrounds.copy();
 
     // RESET();
     this.loadFirstBackgroundTile();			
@@ -36,7 +36,7 @@ var Background = cc.Layer.extend({
 
     this.currentBackgroundTileIndex = 1;
     this.currentBackgroundTile = BackgroundTile.create(
-      this.backgrounds[0], 
+      this.backgroundTiles[0], 
       this.currentBackgroundTileIndex, 
       TILE.VELOCITY, 
       this
@@ -72,7 +72,7 @@ var Background = cc.Layer.extend({
      */
     var offset = this.currentBackgroundTile.getPosition().y + TILE.SIZE / 2 - WIN_SIZE.height;
     this.nextBackgroundTile = BackgroundTile.create(
-      this.backgrounds[0], 
+      this.backgroundTiles[0], 
       this.currentBackgroundTileIndex, 
       offset, 
       this

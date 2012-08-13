@@ -206,3 +206,19 @@ var Tile11 = BasicTile({
   trophieRoutes: [],
 
 });
+
+//tile 2: straight
+var Tile12 = BasicTile({
+
+  src: P_TILE_12,
+  ranges: [{
+    routes : [1, 2, 3],
+    jumpRoutes  : [1, 2, 3],
+    range  : new Utils.Range(0, TILE.SIZE),
+    bound  : { left: BOUND.SOLID, right: BOUND.SOLID },
+  }],
+  turnable: false,
+  directions: [ ACTION.GO_STRAIGHT ],
+  trophieRoutes: [1, 2, 3],
+
+});

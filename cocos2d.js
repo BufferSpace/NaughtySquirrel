@@ -91,6 +91,7 @@ cc.loadjs('Classes/Information/TilesInformation/TileInformation.js');
 
 cc.loadjs('Classes/Information/BackgroundInformation/Backgrounds.js');
 cc.loadjs('Classes/Information/BackgroundInformation/BackgroundInformation.js');
+cc.loadjs('Classes/Controllers/BackgroundController.js');
 
 cc.loadjs('Classes/Information/TrophiesInformation/Coin.js');
 cc.loadjs('Classes/Information/TrophiesInformation/TrophiesInformation.js');

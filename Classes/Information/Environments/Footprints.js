@@ -7,7 +7,7 @@ var Footprints = cc.Layer.extend({
   innerPrint: null,
   innerPatternLight: null,
   outerPrint: null,
-  currentTheme: THEMES.THEME_1.NAME,
+  currentTheme: THEMES.THEME_1,
 
   ctor: function() {
 
@@ -41,13 +41,13 @@ var Footprints = cc.Layer.extend({
 
     var src = {
 
-      INNER_PRINT: null,
-      INNER_PATTERN_LIGHT: null,
-      OUTER_PATTERN: null,
+      INNER_PRINT: P_INNER_RED,
+      INNER_PATTERN_LIGHT: P_INNER_YELLOW,
+      OUTER_PATTERN: P_OUTER_PURPLE,
 
     };
 
-    if (this.currentTheme == 'TRANQUIL FOREST') {
+    if (this.currentTheme.NAME == 'TRANQUIL FOREST') {
 
       src.INNER_PRINT = P_INNER_RED;
       src.INNER_PATTERN_LIGHT = P_INNER_YELLOW;
@@ -55,7 +55,7 @@ var Footprints = cc.Layer.extend({
 
     }
 
-    if (this.currentTheme == 'MISTERIOUS BUSH') {
+    if (this.currentTheme.NAME == 'MISTERIOUS BUSH') {
 
       src.INNER_PRINT = P_INNER_WHITE;
       src.INNER_PATTERN_LIGHT = P_INNER_YELLOW;
@@ -92,21 +92,12 @@ var Footprints = cc.Layer.extend({
     if (character.isRunning())
       this.running(character);
 
-    if (typeof flag.isLanded !== 'undefined' && flag.isLanded) {
-      
-      this.currentTheme = flag.theme;
+    this.currentTheme = flag.theme;
+    if (typeof flag.isLanded !== 'undefined' && flag.isLanded)
       this.landed(character);
 
-    }
-
-    if (typeof flag.isAboutToJump !== 'undefined' && flag.isAboutToJump) {
-
-      this.currentTheme = flag.theme;
+    if (typeof flag.isAboutToJump !== 'undefined' && flag.isAboutToJump)
       this.aboutToJump(character);
-
-    }
-     
-
   	
   },
 

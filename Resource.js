@@ -1,7 +1,7 @@
 var P_LOGO = 'Resources/title.png';
 var P_MENU = 'Resources/menu.png';
 
-var P_TILE_1 = 'Resources/tile_12.png';
+var P_TILE_1 = 'Resources/tile_1.jpg';
 var P_TILE_2 = 'Resources/tile_2.jpg';
 var P_TILE_3 = 'Resources/tile_3.jpg';
 var P_TILE_4 = 'Resources/tile_4.jpg';

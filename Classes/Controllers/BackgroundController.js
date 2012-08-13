@@ -23,7 +23,8 @@ var BackgroundController = {
    * actual meaning is that the background has so many layers. Each element
    * in the array is a layer of the current background.
    */
-  backgrounds: [];
+  backgrounds: [],
+  previousTheme: THEMES.THEME_1,
 
   /**
    * When the theme changes, first detect whether it has background or not.
@@ -32,45 +33,48 @@ var BackgroundController = {
    */
   changeBackgrounds: function(theme, track) {
 
-    if (THEME.hasBackgrounds(theme))
-      this.initBackgrounds(theme, track);
-    else
-      this.removeBackgrounds(theme, track);
+    if (this.previousTheme.NAME != theme.NAME) {
+
+      if (theme.hasOwnProperty('BACKGROUND_POOL'))
+        this.initBackgrounds(theme, track);
+      /*
+      else
+        this.removeBackgrounds(theme, track);
+        */
+
+      this.previousTheme = theme;
+
+    }
   
   },
 
   initBackgrounds: function(theme, track) {
 
-    this.backgrounds = [];
-
+    // this.backgrounds = [];
     this.addBackgrounds(theme.BACKGROUND_POOL, track);
-    this.showBackgrounds();
   
   },
 
   addBackgrounds: function(backgroundPool, track) {
 
-    var bg = new Background(backgroundPool);
-    this.backgrounds.push(bg);
+    for (var i = 0; i < backgroundPool.length; ++i) {
+      var bg = new Background(backgroundPool[i]);
+      this.backgrounds.push(bg);
 
-    for (var i = 0; i < this.backgrounds.length; ++i)
-      track.addChild(this.backgrounds[i], Z_ORDER.BACKGROUND);
-  
+      track.addChild(bg, Z_ORDER.BACKGROUND);
+    }
+
   },
 
-  showBackgrounds: function() {
-
-    for (var i = 0; i < this.backgrounds.length; ++i)
-      this.backgrounds[i].goStraight();
-  
-  },
-
+  /*
   removeBackgrounds: function(track) {
 
+    this.backgrounds.pop();
     for (var i = 0; i < this.backgrounds.length; ++i)
       track.removeChild(this.backgrounds[i]);
   
   },
+  */
 
   reset: function() {
 
