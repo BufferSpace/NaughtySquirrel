@@ -9,8 +9,8 @@ var THEMES = {
       nextTheme = this.THEME_3;
     else if (tileIndex == 10)
       nextTheme = this.THEME_1;
-    else if (tileIndex == 12)
-      nextTheme = this.THEME_1;
+//    else if (tileIndex == 12)
+//      nextTheme = this.THEME_1;
     else
       isChanged = false;
 

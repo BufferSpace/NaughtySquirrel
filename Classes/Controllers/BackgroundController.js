@@ -37,10 +37,8 @@ var BackgroundController = {
 
       if (theme.hasOwnProperty('BACKGROUND_POOL'))
         this.initBackgrounds(theme, track);
-      /*
       else
-        this.removeBackgrounds(theme, track);
-        */
+        this.removeBackgrounds(track);
 
       this.previousTheme = theme;
 
@@ -66,7 +64,6 @@ var BackgroundController = {
 
   },
 
-  /*
   removeBackgrounds: function(track) {
 
     this.backgrounds.pop();
@@ -74,7 +71,6 @@ var BackgroundController = {
       track.removeChild(this.backgrounds[i]);
   
   },
-  */
 
   reset: function() {
 

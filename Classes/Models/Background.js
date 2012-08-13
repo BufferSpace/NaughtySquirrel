@@ -38,8 +38,7 @@ var Background = cc.Layer.extend({
     this.currentBackgroundTile = BackgroundTile.create(
       this.backgroundTiles[0], 
       this.currentBackgroundTileIndex, 
-      TILE.VELOCITY, 
-      this
+      TILE.VELOCITY
     );
 
     this.addChild(
@@ -74,8 +73,7 @@ var Background = cc.Layer.extend({
     this.nextBackgroundTile = BackgroundTile.create(
       this.backgroundTiles[0], 
       this.currentBackgroundTileIndex, 
-      offset, 
-      this
+      offset
     );
 
     this.addChild(
