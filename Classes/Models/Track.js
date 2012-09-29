@@ -1,19 +1,14 @@
 /**
- * The main game layer including: Tile,Character,trophies 
+ * The main game layer including: Tile, character, trophies.
  */
 
 var Track = cc.Layer.extend({
 
-  // Array of tiletypes
   tiles: null,
 
   character: null,
-  turnDirection: null,  // Player key up diraetion(ACTION_TURN_LEFT, ACTION_TURN_RIGHT)
-
-  /**
-   * Life cycle of a Tile
-   * loadTile --->  nextTile  ---> currentTile(character in it) ---> removeTile
-   */                     
+  turnDirection: null,
+               
   currentTile: null,
   nextTile: null,
   currentTileIndex: null,
@@ -95,7 +90,7 @@ var Track = cc.Layer.extend({
     LevelController.generateTiles(TILE.LOAD_DURATION, this.currentTileIndex, this.tiles);
 
     PropertiesController.updatePropertiesLife(this.trophyType, this.character);
-    BackgroundController.changeBackgrounds(this.currentTheme, this);
+    // BackgroundController.changeBackgrounds(this.currentTheme, this);
 
   },
 

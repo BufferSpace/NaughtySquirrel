@@ -128,7 +128,13 @@ Utils.Random = {
 
     return begin + Math.random() * (end - begin);
 
-  }
+  },
+
+  rangeInteger: function(begin, end) {
+
+    return Math.floor(begin + Math.random() * (end - begin));
+  
+  },
 
 }
 

@@ -36,20 +36,13 @@ var BackgroundController = {
     if (this.previousTheme.NAME != theme.NAME) {
 
       if (theme.hasOwnProperty('BACKGROUND_POOL'))
-        this.initBackgrounds(theme, track);
+        this.addBackgrounds(theme.BACKGROUND_POOL, track);
       else
         this.removeBackgrounds(track);
 
       this.previousTheme = theme;
 
     }
-  
-  },
-
-  initBackgrounds: function(theme, track) {
-
-    // this.backgrounds = [];
-    this.addBackgrounds(theme.BACKGROUND_POOL, track);
   
   },
 
@@ -66,9 +59,10 @@ var BackgroundController = {
 
   removeBackgrounds: function(track) {
 
-    this.backgrounds.pop();
     for (var i = 0; i < this.backgrounds.length; ++i)
       track.removeChild(this.backgrounds[i]);
+
+    this.backgrounds = [];
   
   },
 

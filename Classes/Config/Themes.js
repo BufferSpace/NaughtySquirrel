@@ -6,7 +6,7 @@ var THEMES = {
     var nextTheme = currentTheme;
     
     if (tileIndex == 7)
-      nextTheme = this.THEME_3;
+      nextTheme = this.THEME_2;
     else if (tileIndex == 10)
       nextTheme = this.THEME_1;
 //    else if (tileIndex == 12)
@@ -35,16 +35,14 @@ var THEMES = {
   THEME_1: {
 
     NAME: 'TRANQUIL FOREST',
-    TILE_OCCURENCE_RATES: [100],
+    TILE_OCCURENCE_RATES: [40, 30, 20, 10],
     TILE_OCCURENCE_RATES_SUM: 100,
     LEVEL_FUNCTION: new Utils.Ranges([5, 10, 15, 20, 25]),
     TILE_POOL: [
       [1, 7],
-      /*
       [4],
       [2, 3],
       [5, 6],
-      */
     ],
 
   },

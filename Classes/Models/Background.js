@@ -36,7 +36,7 @@ var Background = cc.Layer.extend({
 
     this.currentBackgroundTileIndex = 1;
     this.currentBackgroundTile = BackgroundTile.create(
-      this.backgroundTiles[0], 
+      this.backgroundTiles[Utils.Random.rangeInteger(0, this.backgroundTiles.length)], 
       this.currentBackgroundTileIndex, 
       TILE.VELOCITY
     );
@@ -71,7 +71,7 @@ var Background = cc.Layer.extend({
      */
     var offset = this.currentBackgroundTile.getPosition().y + TILE.SIZE / 2 - WIN_SIZE.height;
     this.nextBackgroundTile = BackgroundTile.create(
-      this.backgroundTiles[0], 
+      this.backgroundTiles[Utils.Random.rangeInteger(0, this.backgroundTiles.length)], 
       this.currentBackgroundTileIndex, 
       offset
     );
