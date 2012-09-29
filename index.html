@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>Naughty Squirrel</title>
+  <meta charset="utf-8" />
+  <meta name="author" content="html5china" />
+  <style type="text/css">
+    body {
+      background: black;
+      color: #999;
+    }
+
+    #specification {
+      margin: 50px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 20%;
+      font-size: 1.1em;
+    }
+
+    #specification .title {
+      font-weight: bold;
+      font-size: 1.5em;
+    }
+
+    #specification li {
+      margin: 10px 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="gameLayer" style="width: 480px; height: 720px; margin: 0 auto;"></div>
+  <a href="https://github.com/BufferSpace/NaughtySquirrel"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></img></a>
+
+  <div id="specification">
+    <p class="title">Attention</p>
+    <ul>
+      <li>Please visit the site with CHROME to enjoy the best performance. Frankly, if you run the game on other browsers, there are some strange bugs.</li>
+      <li>There is a problem that we could not figure out. After you click the start button, please click the canvas again to get focus, or the operations may fail to work.</li>
+    </ul>
+
+    <p class="title">Other Stuff</p>
+    <ul>
+      <li>As you see that the character is pretty lame, we are so sorry for that since we are lack of designers. If you are interested in the character design, feel free to contact us on github.(BTW: The gmail shown in the profile doesn't work. Contact one of us.)</li>
+  </ul>
+
+  </div>
+</body>
+
+<script type="text/javascript"> 
+
+  var SCALE_RATE = 1;
+  var STANDARD_SIZE = {
+      width  : 480,
+      height : 720,
+  };
+
+  var WIN_SIZE = {
+
+    width  : STANDARD_SIZE.width * SCALE_RATE,
+    height : STANDARD_SIZE.height * SCALE_RATE,
+  
+  }
+
+  var div = document.getElementById('gameLayer');
+  
+  var canvas = document.createElement('canvas');
+  canvas.width = WIN_SIZE.width;
+  canvas.height = WIN_SIZE.height;
+  canvas.id = "gameCanvas";
+  canvas.style.border = "#333300 1px solid";
+  div.appendChild(canvas);
+
+</script>
+
+<script src="cocos2d.js"></script>
+
+</html>
