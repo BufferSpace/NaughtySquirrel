@@ -1,30 +1,46 @@
-# 游戏说明
+# Naughty Squirrel
 
-本游戏是一款悠闲跑步游戏。玩家通过操纵主角进行转弯以及跳跃来顺着跑道前进。期间，可以通过左滑以及右滑来吃金豆。游戏中有各种各样的道具，吃到不同的道具会有不同的效果。
+We have to clear that the name means nothing...and it's kind of stupid...
 
-## 游戏规则
+This game is inspired by TEMPLE RUN. More specifically, this game is a 2D version of temple run. The game is developped for pure fun. But one of the serious reason is to see the performance of HTML5 and Cocos2D HTML. Obviously, the performance is not that good and you may feel dazzling not because of the speed of the game but the bad performance.
 
-+ 在非转弯的道路中转弯，会扣取1点生命值；
-+ 在跳跃的地方没有跳跃或者来不及跳跃，结束游戏；
-+ 在主角的生命值为0的时候，结束游戏；
+## Rules
 
-## 分值计算
++ You have 3 HP at the very beginning.
++ Invalid turning decreases your HP by 1.
++ If you failed to jump in some specific landscape, game over.
++ If you failed to turn in turnings, game over.
++ If you don't have any HP, game over.
 
-+ 金豆的原始分值是1，吃了红宝石以后会变成2，吃了蓝宝石以后会变成3，以最后吃到的有效道具为准；
-+ 跑步的里程是一直递增的；
-+ 总分通过对吃金豆的分数以及跑步的里程求和得到；
+## Score
 
-## 操作说明
++ Each golden bean worths 1 point.
++ The running distance keeps increasing.
++ The total score is the combination of the above points.
 
-+ a：主角左滑动；
-+ d：主角右滑动；
-+ ←：主角左转弯；
-+ →：主角右转弯；
-+ ↑：主角跳跃；
+## Operations
 
-## 道具说明
++ a：Slide left.
++ d：Slide right.
++ ←：Turn left.
++ →：Turn right.
++ ↑：Jump.
 
-+ 红宝石：在紧接着的500米内，金豆的分值会x2；
-+ 蓝宝石：在紧接着的500米内，金豆的分值会x3；
-+ 磁铁：  会帮助主角吸取金币；
-+ 药水：  会恢复主角的生命值1点；
+## Properties
+
++ Ruby: In the following 500 meters, score is doubled.
++ Saphire: In the following 500 meters, score is tripled.
++ magnet: Absorbe golden beans for you.
++ medicine: Heal 1 HP.
+
+## LICENCE
+
+(The MIT License)
+
+Copyright (c) 2012 by ![Zero](https://github.com/Aquietzero) and ![fsiaonma](https://github.com/fsiaonma)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
