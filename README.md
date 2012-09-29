@@ -1,5 +1,8 @@
 # Naughty Squirrel
 
+Using chrome to get the best performance.
+[Here to PLAY!](http://bufferspace.github.com/NaughtySquirrel/)
+
 We have to clear that the name means nothing...and it's kind of stupid...
 
 This game is inspired by TEMPLE RUN. More specifically, this game is a 2D version of temple run. The game is developped for pure fun. But one of the serious reason is to see the performance of HTML5 and Cocos2D HTML. Obviously, the performance is not that good and you may feel dazzling not because of the speed of the game but the bad performance.
